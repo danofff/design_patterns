@@ -70,6 +70,7 @@ namespace prototype
             //changing FirsName in clone, which used light 
             //cloninnig supose change Name in first instance
             s2.Name.FirstName = "Missis";
+
             //changing FirsName in clone, which used light 
             //cloninnig supose not changing Name in first instance
             s3.Name.FirstName = "Mr";
