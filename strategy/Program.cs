@@ -20,7 +20,6 @@ namespace strategy
                 Console.WriteLine(car.Model + " едет на бензине");
             }
         }
-
         class ElectricMove : IMovable
         {
             public void Move(Car car)
@@ -31,8 +30,8 @@ namespace strategy
 
         class Car
         {
-            public int Passengers { get; set; }
-            public string Model { get; set; }
+            public int Passengers { get; private set; }
+            public string Model { get; private set; }
             public IMovable Movable { private get; set; }
 
             public Car(int passengers,string model,IMovable mov)
