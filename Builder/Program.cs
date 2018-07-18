@@ -26,7 +26,6 @@ namespace Builder
             }
         }
 
-
         abstract class PhoneBuilder
         {
             public Phone phone { get; private set; }
