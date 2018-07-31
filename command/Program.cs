@@ -44,7 +44,36 @@ namespace command
             }
         }
 
-        //конкретная реализация команды для телевизора
+        //получатель команды 3
+        class Volume
+        {
+            public const int Off = 0;
+            public const int Hight = 20;
+            private int level;
+            public Volume()
+            {
+                level = Off;
+            }
+
+            public void RaiseVolumeLevel()
+            {
+                if (level < Hight)
+                {
+                    level++;
+                }
+                Console.WriteLine($"Уровень звука {level}");
+            }
+            public void DropVolumeLevel()
+            {
+                if (level >Off)
+                {
+                    level--;
+                }
+                Console.WriteLine($"Уровень звука {level}");
+            }
+        }
+
+        //конкретная реализация команды для включения телевизора
         class TvOnCommand : ICommand
         {
             TV Tv;
@@ -87,12 +116,48 @@ namespace command
             }
         }
 
+        //Конкретная реализация команды увеличения и уменьшения звука
+        class VolumeLevelCommand : ICommand
+        {
+            Volume vol;
+            public VolumeLevelCommand(Volume v)
+            {
+                vol = v;
+            }
+
+            public void Execute()
+            {
+                vol.RaiseVolumeLevel();
+            }
+
+            public void Undo()
+            {
+                vol.DropVolumeLevel();
+            }
+        }
+
+
+        public class NoCommand : ICommand
+        {
+            public void Execute()
+            {
+                
+            }
+
+            public void Undo()
+            {
+                
+            }
+        }
+
+
         //Инициатор команды
         class Remote
         {
             ICommand command;
             public Remote()
-            {      
+            {
+                command = new NoCommand();   
             }
             public void SetCommand(ICommand com)
             {
@@ -122,7 +187,22 @@ namespace command
 
             remote.PressButton();
             remote.PressUndo();
+           
+            Volume volume = new Volume();
+            remote.SetCommand(new VolumeLevelCommand(volume));
+   
+            remote.PressButton();
+            remote.PressButton();
+            remote.PressButton();
+            remote.PressButton();
+            remote.PressButton();
+            remote.PressButton();
+            remote.PressButton();
+
+            remote.PressUndo();
+
             Console.ReadKey();
+
         }
     }
 }
