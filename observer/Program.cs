@@ -8,7 +8,6 @@ namespace observer
 {
     class Program
     {
-
         //наблюдатель
         interface IObserver
         {
@@ -28,7 +27,6 @@ namespace observer
             public int USD { get; set; }
             public int Euro { get; set; }
         }
-
 
         //Конкретная реализация интерфейса наблюдаемого
         class Stock:IObservable
@@ -67,7 +65,6 @@ namespace observer
             }
         }
 
-
         //конкретная реализация интерфейса наблюдателя, брокер
         class Broker : IObserver
         {
@@ -97,7 +94,6 @@ namespace observer
                 stock = null;
             }
         }
-
 
         //Кокретная реализация интерфейса наблюдателя, банк
         class Bank : IObserver
