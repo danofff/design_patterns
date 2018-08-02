@@ -150,7 +150,6 @@ namespace command
             }
         }
 
-
         //Инициатор команды
         class Remote
         {
